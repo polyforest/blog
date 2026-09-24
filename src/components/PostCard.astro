@@ -1,0 +1,71 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { formatDate, withBase } from '../utils/urls'
+
+interface Props {
+  post: CollectionEntry<'blog'>
+}
+
+const { post } = Astro.props
+const { title, description, pubDate, tags } = post.data
+---
+
+<article class="card">
+  <p class="date">
+    <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+  </p>
+  <h2><a href={withBase(`/${post.id}/`)}>{title}</a></h2>
+  <p class="desc">{description}</p>
+  {tags.length > 0 && (
+    <p class="tags">
+      {tags.map((tag) => <span class="tag">{tag}</span>)}
+    </p>
+  )}
+</article>
+
+<style>
+  .card {
+    padding: 1.6rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .card:last-child {
+    border-bottom: none;
+  }
+  .date {
+    margin: 0 0 0.3em;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  h2 {
+    margin: 0 0 0.4em;
+    font-size: 1.55rem;
+  }
+  h2 a {
+    color: #f5f2ea;
+    text-decoration: none;
+  }
+  h2 a:hover {
+    color: var(--accent);
+  }
+  .desc {
+    margin: 0;
+    color: var(--text-muted);
+  }
+  .tags {
+    margin: 0.8em 0 0;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.15em 0.7em;
+  }
+</style>

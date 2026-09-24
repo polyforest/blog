@@ -1,0 +1,77 @@
+---
+import { withBase } from '../utils/urls'
+
+const { current = '' } = Astro.props
+
+const links = [
+  { href: '/', label: 'Posts' },
+  { href: '/about/', label: 'About' },
+]
+---
+
+<header class="site-header">
+  <nav aria-label="Main">
+    <a class="brand" href={withBase('/')}>
+      <svg class="mark" width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+        <polygon points="32,6 44,26 36,26 48,44 40,44 52,58 12,58 24,44 16,44 28,26 20,26" fill="#f0d554"></polygon>
+        <polygon points="26,58 32,44 38,58" fill="#c47f2a"></polygon>
+      </svg>
+      <span>Poly Forest</span>
+    </a>
+    <div class="nav-links">
+      {links.map(({ href, label }) => (
+        <a href={withBase(href)} aria-current={current === href ? 'page' : undefined}>{label}</a>
+      ))}
+      <a class="ext" href="https://www.polyforest.com/">polyforest.com</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--line);
+    background: rgba(25, 25, 25, 0.85);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav {
+    max-width: var(--wide-max-width);
+    margin: 0 auto;
+    padding: 0.8rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: #f5f2ea;
+    text-decoration: none;
+  }
+  .brand .mark {
+    flex-shrink: 0;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    font-size: 0.95rem;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+  .nav-links a:hover,
+  .nav-links a[aria-current='page'] {
+    color: var(--accent);
+  }
+  .nav-links .ext {
+    color: var(--text-faint);
+  }
+</style>

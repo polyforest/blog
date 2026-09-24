@@ -1,0 +1,28 @@
+{
+  "name": "polyforest-blog",
+  "version": "1.0.0",
+  "description": "The Poly Forest engineering blog",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/generate-social-card.mjs && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "new-post": "node scripts/new-post.mjs"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.12",
+    "@astrojs/sitemap": "^3.6.0",
+    "@fontsource/scope-one": "^5.2.5",
+    "@resvg/resvg-js": "^2.6.2",
+    "astro": "^5.13.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=18.17.1"
+  }
+}

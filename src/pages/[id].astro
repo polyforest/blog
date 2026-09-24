@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PostLayout from '../layouts/PostLayout.astro'
+import { absoluteUrl } from '../utils/urls'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft)
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }))
+}
+
+const { post } = Astro.props
+const { Content } = await render(post)
+const url = absoluteUrl(`/${post.id}/`, Astro.site)
+---
+
+<BaseLayout
+  title={`${post.data.title} — Poly Forest Blog`}
+  description={post.data.description}
+  path={`/${post.id}/`}
+  site={Astro.site}
+  type="article"
+  publishedTime={post.data.pubDate}
+  modifiedTime={post.data.updatedDate}
+  tags={post.data.tags}
+>
+  <PostLayout post={post} url={url}>
+    <Content />
+  </PostLayout>
+</BaseLayout>

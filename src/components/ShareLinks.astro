@@ -1,0 +1,96 @@
+---
+interface Props {
+  /** Absolute URL of the post, for share links. */
+  url: string
+  title: string
+}
+
+const { url, title } = Astro.props
+const encodedUrl = encodeURIComponent(url)
+const encodedTitle = encodeURIComponent(title)
+
+const links = [
+  {
+    href: `https://news.ycombinator.com/submitlink?u=${encodedUrl}&t=${encodedTitle}`,
+    label: 'Hacker News',
+  },
+  {
+    href: `https://www.reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`,
+    label: 'Reddit',
+  },
+  {
+    href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+    label: 'X / Twitter',
+  },
+  {
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    label: 'LinkedIn',
+  },
+]
+---
+
+<aside class="share">
+  <span class="label">Share</span>
+  <ul>
+    {links.map(({ href, label }) => (
+      <li><a href={href} rel="noopener noreferrer" target="_blank">{label}</a></li>
+    ))}
+    <li>
+      <button type="button" class="copy" data-url={url}>Copy link</button>
+    </li>
+  </ul>
+</aside>
+
+<style>
+  .share {
+    margin-top: 3rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+  }
+  .label {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 0.9rem;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+  a,
+  .copy {
+    font-size: 0.9rem;
+    color: var(--accent);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  a:hover,
+  .copy:hover {
+    color: #fff3b0;
+  }
+</style>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('button.copy')
+  button?.addEventListener('click', async () => {
+    const url = button.dataset.url
+    if (!url) return
+    await navigator.clipboard.writeText(url)
+    const original = button.textContent
+    button.textContent = 'Copied!'
+    setTimeout(() => {
+      button.textContent = original
+    }, 1500)
+  })
+</script>
