@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { withBase } from '../utils/urls'
+---
+
+<BaseLayout title="Page not found — Poly Forest Blog" description="This trail doesn't lead anywhere.">
+  <section class="notfound">
+    <h1>Lost in the woods</h1>
+    <p>There's no page at this URL. The trail you followed may be old, or it may have never existed.</p>
+    <p class="notfound-home"><a href={withBase('/')}>Back to the campfire</a></p>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    text-align: center;
+    padding: 5rem 0 3rem;
+  }
+  .notfound h1 {
+    font-size: 3rem;
+    margin-bottom: 0.6em;
+  }
+  .notfound p {
+    max-width: 34rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-muted);
+  }
+  .notfound-home {
+    margin-top: 2.5rem;
+    font-size: 1.1rem;
+  }
+</style>

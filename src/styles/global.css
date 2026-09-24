@@ -1,0 +1,171 @@
+/* ==========================================================================
+   Poly Forest blog — global styles
+   Brand: low-poly night forest. Near-black canvas (#191919), warm gold
+   accent (#f0d554), Scope One for headings (the polyforest.com face).
+   ========================================================================== */
+
+:root {
+  --bg: #191919;
+  --bg-raised: #202020;
+  --bg-code: #111111;
+  --text: #d8d4cc;
+  --text-muted: #8a867e;
+  --text-faint: #646464;
+  --accent: #f0d554;
+  --accent-soft: rgba(240, 213, 84, 0.14);
+  --indigo: #4e56e0;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --font-display: 'Scope One', 'Georgia', serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Mono', Menlo, monospace;
+  --max-width: 46rem;
+  --wide-max-width: 62rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(240, 213, 84, 0.055), transparent),
+    var(--bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: #f5f2ea;
+  line-height: 1.25;
+  margin: 2em 0 0.6em;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-top: 0.4em;
+}
+
+h2 {
+  font-size: 1.7rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-color: rgba(240, 213, 84, 0.45);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: #fff3b0;
+  text-decoration-color: currentColor;
+}
+
+p {
+  margin: 0 0 1.1em;
+}
+
+strong {
+  color: #f5f2ea;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 2.5em 0;
+}
+
+blockquote {
+  margin: 1.4em 0;
+  padding: 0.2em 1.2em;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 6px 6px 0;
+  color: var(--text);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0.4em;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--bg-code);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  color: #e8c86a;
+}
+
+pre {
+  background: var(--bg-code);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* Inline astro-shiki code blocks are styled via the pre/code rules above;
+   Shiki emits its own theme colors inside pre code. */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.95rem;
+}
+
+th, td {
+  border: 1px solid var(--line);
+  padding: 0.55em 0.8em;
+  text-align: left;
+}
+
+th {
+  background: var(--bg-raised);
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: #f5f2ea;
+  letter-spacing: 0.02em;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+::selection {
+  background: rgba(240, 213, 84, 0.3);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

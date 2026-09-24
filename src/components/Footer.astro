@@ -1,0 +1,33 @@
+---
+import { withBase } from '../utils/urls'
+
+const year = new Date().getUTCFullYear()
+---
+
+<footer class="site-footer">
+  <div class="inner">
+    <p>© {year} Poly Forest · <a href={withBase('/rss.xml')}>RSS</a> · <a href="https://www.polyforest.com/">polyforest.com</a></p>
+    <p class="fine">Built with <a href="https://astro.build">Astro</a>. Hosted on GitHub Pages.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    margin-top: 4rem;
+  }
+  .inner {
+    max-width: var(--wide-max-width);
+    margin: 0 auto;
+    padding: 1.6rem 1.25rem 2.2rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .inner p {
+    margin: 0.2em 0;
+  }
+  .fine {
+    color: var(--text-faint);
+    font-size: 0.82rem;
+  }
+</style>

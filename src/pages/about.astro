@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const path = '/about/'
+---
+
+<BaseLayout
+  title="About — Poly Forest Blog"
+  description="Who writes the Poly Forest blog and why."
+  path={path}
+>
+  <article class="prose">
+    <h1>About</h1>
+    <p>
+      Poly Forest builds interactive software — games, web media, and the libraries that
+      power them. This blog is where we write up how it works: release notes that explain
+      themselves, technical deep dives, and notes from shipping open source.
+    </p>
+    <p>
+      The current focus is <a href="https://github.com/polyforest/vinyl">Vinyl</a>, our
+      open-source JavaScript audio playback library for music, podcast, and audiobook
+      experiences on the web.
+    </p>
+    <p>
+      Posts are written by <a href="https://github.com/nbilyk">Nicholas Bilyk</a> and
+      friends at Poly Forest. Corrections and good arguments are welcome — open an issue
+      or start a discussion on the repo.
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 3rem 0 2rem;
+  }
+</style>

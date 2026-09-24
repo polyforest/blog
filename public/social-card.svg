@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="88%" r="75%">
+      <stop offset="0%" stop-color="#f0d554" stop-opacity="0.22"/>
+      <stop offset="45%" stop-color="#e8a33d" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#191919" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#101018"/>
+      <stop offset="100%" stop-color="#191919"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#sky)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- low-poly pine silhouettes -->
+  <g fill="#0d0d0d">
+    <polygon points="60,630 130,430 200,630"/>
+    <polygon points="150,630 240,380 330,630"/>
+    <polygon points="880,630 960,410 1040,630"/>
+    <polygon points="990,630 1080,360 1170,630"/>
+  </g>
+  <g fill="#141210">
+    <polygon points="0,630 80,470 160,630"/>
+    <polygon points="260,630 340,450 420,630"/>
+    <polygon points="780,630 850,460 920,630"/>
+    <polygon points="1120,630 1200,450 1280,630"/>
+  </g>
+
+  <!-- fire glow ember -->
+  <ellipse cx="600" cy="520" rx="130" ry="26" fill="#f0d554" opacity="0.10"/>
+
+  <!-- wordmark -->
+  <text x="600" y="300" text-anchor="middle"
+        font-family="Scope One, Georgia, serif" font-size="88" fill="#f5f2ea">Poly Forest</text>
+  <text x="600" y="368" text-anchor="middle"
+        font-family="Scope One, Georgia, serif" font-size="34" fill="#f0d554"
+        letter-spacing="6">BLOG</text>
+</svg>
