@@ -1,6 +1,6 @@
 ---
-title: "Hello, world — why Poly Forest is writing things down"
-description: "An engineering blog for Poly Forest: what we're building, what we're learning, and why our first subject is Vinyl, our open-source web audio streaming engine."
+title: "Hello, world: why Poly Forest is writing things down"
+description: "The Poly Forest engineering blog. What we're building and what we're learning, starting with Vinyl, our open-source web audio streaming engine."
 pubDate: 2026-09-24
 updatedDate: 2026-09-24
 author: "Nicholas Bilyk"
@@ -8,44 +8,41 @@ tags: ["meta", "vinyl", "open-source"]
 draft: false
 ---
 
-Every project at Poly Forest eventually produces the same artifact: a pile of knowledge
-sitting in git history, issue threads, and release notes that only make sense if you
-already know the story. This blog is where that story gets written down for everyone else.
+Every project leaves the same trail behind: decisions buried in git history, arguments
+in issue threads, context scattered across release notes. It all makes sense if you were
+in the room. This blog is where we write things down for the people who weren't.
 
 ## What to expect
 
-Three kinds of posts, all written by the people doing the work:
+Everything here is written by the people doing the work. Some posts are deep dives into
+how a piece of the system actually works: parsers, buffers, rendering loops. Others are
+release write-ups: what shipped, why, and what we'd do differently next time. The misses
+get the same treatment as the wins.
 
-- **Deep dives.** How a piece of the system actually works — parsers, buffers, rendering
-  loops — with the benchmarks and repro scripts to back up any number we quote.
-- **Release write-ups.** When something ships, we'll explain what changed, why it changed,
-  and what we'd do differently. The misses come along with the wins.
-- **Notes from shipping.** The unglamorous parts of maintaining open-source software:
-  test coverage as a workflow, CI that fails usefully, supporting real users at real scale.
+The rest is notes from maintaining open source. Test coverage as part of the workflow,
+CI that fails usefully, supporting real users at real scale. Less glamorous than the
+deep dives, but it's most of the actual job.
 
 ## Starting with Vinyl
 
-Our first subject is [Vinyl](https://github.com/amazonmusic/vinyl), the open-source
+We're starting with [Vinyl](https://github.com/amazonmusic/vinyl), the open-source
 JavaScript streaming engine we announced in
 [June 2026](https://www.linkedin.com/posts/polyforest_today-im-announcing-that-amazon-vinyl-the-activity-7470112528870580226-8rwT).
-It's the engine behind playback on Amazon Music and Alexa.com, and it's built for the web:
-DASH and HLS with DRM, gapless track transitions, queues and prefetch as first-class
-concepts, all in about 75 KiB gzipped with zero runtime dependencies.
+It's the engine behind playback on Amazon Music and Alexa.com, and it's built for the
+web: DASH and HLS with DRM, gapless track transitions, queues and prefetch as
+first-class concepts. All of it in about 75 KiB gzipped, with zero runtime dependencies.
 
-We have strong opinions about web media — about what belongs in an engine, what belongs
-in a player UI, and what the platform should be doing for you instead. Writing them down
-is overdue.
+We have opinions about web media, mainly about where the engine ends and the player UI
+begins, and how much the platform should be doing for you instead. Writing them down is
+overdue.
 
 ## The ground rules
 
-A few commitments, so you know what you're reading:
+A few commitments, so you know what you're getting. If we quote a bundle size or a
+benchmark, the script that produced it is published next to it, with the date it was
+measured. We answer the naive questions first, especially the ones left in the comments
+on our own announcements. And when Vinyl isn't the right tool, we'll say so: simple
+sites don't need a streaming engine, and pretending otherwise buys nobody anything.
 
-1. **Numbers come with methods.** If we quote a bundle size or a benchmark, the script
-   that produced it is published next to it, with the date it was measured.
-2. **We answer the naive questions first.** Especially the ones left in comments on our
-   own announcements.
-3. **We say when Vinyl isn't the right tool.** Simple sites don't need a streaming
-   engine, and pretending otherwise buys nobody anything.
-
-That's the deal. Next up: an honest answer to the question from the launch thread —
-"is this good for video, or only for audio?"
+Next up: the first real question under the launch announcement. Is Vinyl good for
+video, or only for audio? The next post answers it.

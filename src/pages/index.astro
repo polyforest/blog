@@ -8,14 +8,14 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 ---
 
-<BaseLayout title={`${SITE_TITLE} — engineering notes`} description={SITE_DESCRIPTION}>
+<BaseLayout title={`${SITE_TITLE} · engineering notes`} description={SITE_DESCRIPTION}>
   <section class="hero">
     <h1>Poly Forest <span class="accent">Blog</span></h1>
     <p>{SITE_DESCRIPTION}</p>
   </section>
 
   <section class="listing" aria-label="Posts">
-    {posts.length === 0 && <p class="empty">Nothing published yet — the first post is being written by the fire.</p>}
+    {posts.length === 0 && <p class="empty">Nothing published yet. The first post is in the works.</p>}
     {posts.map((post) => <PostCard post={post} />)}
   </section>
 </BaseLayout>
