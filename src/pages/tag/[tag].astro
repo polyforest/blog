@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PostCard from '../../components/PostCard.astro'
+import { SITE_TITLE, slugify } from '../../utils/urls'
+
+export async function getStaticPaths() {
+  // Published posts only: a draft's tags must not create empty archives.
+  const posts = await getCollection('blog', ({ data }) => !data.draft)
+  const tags = [...new Set(posts.flatMap((post) => post.data.tags))]
+  return tags.map((tag) => ({
+    params: { tag: slugify(tag) },
+    props: {
+      tag,
+      posts: posts
+        .filter((post) => post.data.tags.includes(tag))
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }))
+}
+
+const { tag, posts } = Astro.props
+---
+
+<BaseLayout
+  title={`Posts tagged “${tag}” — ${SITE_TITLE}`}
+  description={`All Poly Forest blog posts tagged ${tag}.`}
+  path={`/tag/${tag}/`}
+>
+  <section class="tag-header">
+    <h1>Posts tagged <span class="accent">{tag}</span></h1>
+  </section>
+
+  <section class="listing" aria-label={`Posts tagged ${tag}`}>
+    {posts.map((post) => <PostCard post={post} />)}
+  </section>
+</BaseLayout>
+
+<style>
+  .tag-header {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+  .tag-header h1 {
+    margin-bottom: 0;
+  }
+  .accent {
+    color: var(--accent);
+  }
+  .listing {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-bottom: 2rem;
+  }
+</style>
