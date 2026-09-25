@@ -12,11 +12,13 @@ const links = [
 <header class="site-header">
   <nav aria-label="Main">
     <a class="brand" href={withBase('/')}>
-      <svg class="mark" width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
-        <polygon points="32,6 44,26 36,26 48,44 40,44 52,58 12,58 24,44 16,44 28,26 20,26" fill="#f0d554"></polygon>
-        <polygon points="26,58 32,44 38,58" fill="#c47f2a"></polygon>
-      </svg>
-      <span>Poly Forest</span>
+      <img
+        class="logo"
+        src={withBase('/assets/polyforest-logo.svg')}
+        alt="Poly Forest"
+        width="101"
+        height="28"
+      />
     </a>
     <div class="nav-links">
       {links.map(({ href, label }) => (
@@ -48,14 +50,11 @@ const links = [
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    color: #f5f2ea;
-    text-decoration: none;
   }
-  .brand .mark {
-    flex-shrink: 0;
+  .brand .logo {
+    display: block;
+    height: 28px;
+    width: auto;
   }
   .nav-links {
     display: flex;
