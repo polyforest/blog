@@ -12,7 +12,7 @@ export const SITE_TITLE = 'Poly Forest Blog'
 export const AUTHOR = 'Nicholas Bilyk'
 
 export const SITE_DESCRIPTION =
-  'Notes from the Poly Forest team — technical write-ups and release news for Vinyl, our open-source web audio library.'
+  'Notes from the Poly Forest team: technical write-ups and release news for Vinyl, our open-source web audio library.'
 
 /** The configured base path, without a trailing slash ('' for root deploys). */
 export const BASE = import.meta.env.BASE_URL.replace(/\/+$/, '')
