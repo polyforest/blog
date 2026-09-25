@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { AUTHOR, formatDate, withBase } from '../utils/urls'
+import { AUTHOR, formatDate, slugify, withBase } from '../utils/urls'
 import ShareLinks from '../components/ShareLinks.astro'
 
 interface Props {
@@ -24,7 +24,7 @@ const { title, pubDate, updatedDate, author = AUTHOR, tags } = post.data
       <span>{author}</span>
       {tags.length > 0 && (
         <span class="tags">
-          {tags.map((tag) => <span class="tag">{tag}</span>)}
+          {tags.map((tag) => <a class="tag" href={withBase(`/tag/${slugify(tag)}/`)}>{tag}</a>)}
         </span>
       )}
     </p>
@@ -82,6 +82,11 @@ const { title, pubDate, updatedDate, author = AUTHOR, tags } = post.data
     border: 1px solid var(--line);
     border-radius: 999px;
     padding: 0.15em 0.7em;
+    text-decoration: none;
+  }
+  .tag:hover {
+    color: var(--accent);
+    border-color: var(--line-strong);
   }
   .prose {
     max-width: var(--max-width);

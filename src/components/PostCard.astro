@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { formatDate, withBase } from '../utils/urls'
+import { formatDate, slugify, withBase } from '../utils/urls'
 
 interface Props {
   post: CollectionEntry<'blog'>
@@ -18,7 +18,7 @@ const { title, description, pubDate, tags } = post.data
   <p class="desc">{description}</p>
   {tags.length > 0 && (
     <p class="tags">
-      {tags.map((tag) => <span class="tag">{tag}</span>)}
+      {tags.map((tag) => <a class="tag" href={withBase(`/tag/${slugify(tag)}/`)}>{tag}</a>)}
     </p>
   )}
 </article>
@@ -67,5 +67,10 @@ const { title, description, pubDate, tags } = post.data
     border: 1px solid var(--line);
     border-radius: 999px;
     padding: 0.15em 0.7em;
+    text-decoration: none;
+  }
+  .tag:hover {
+    color: var(--accent);
+    border-color: var(--line-strong);
   }
 </style>
