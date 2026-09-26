@@ -1,7 +1,7 @@
 # Poly Forest Blog
 
 The Poly Forest engineering blog — a static [Astro](https://astro.build) site
-published to GitHub Pages at <https://polyforest.github.io/blog/>.
+published to GitHub Pages at <https://blog.polyforest.com/>.
 
 ## Writing a post
 
@@ -12,7 +12,7 @@ npm run new-post
 That's the whole workflow. The script asks for a title and slug, then creates
 `src/content/blog/<slug>.md` pre-filled with frontmatter and section scaffolding.
 Write the body in Markdown, run `npm run dev` to preview at
-<http://localhost:4321/blog/>, and open a PR when it reads well.
+<http://localhost:4321/>, and open a PR when it reads well.
 
 ### Frontmatter reference
 
@@ -33,7 +33,7 @@ metadata can never deploy.
 
 | Command | What it does |
 |---|---|
-| `npm run dev` | Dev server with live reload at `localhost:4321/blog/`. |
+| `npm run dev` | Dev server with live reload at `localhost:4321/`. |
 | `npm run build` | Renders the social card to PNG, then builds the site to `dist/`. |
 | `npm run preview` | Serves the production build locally. |
 | `npm run check` | Astro + TypeScript diagnostics. |
@@ -47,8 +47,8 @@ metadata can never deploy.
 - `src/components/` — header, footer, post card, share links, and `BaseHead`,
   which owns all meta/OG/Twitter/JSON-LD tags.
 - `src/content/blog/` — the posts (Markdown with validated frontmatter).
-- `src/utils/urls.ts` — base-path handling for the GitHub Pages subpath,
-  canonical URLs, and date formatting.
+- `src/utils/urls.ts` — URL helpers (path joining, canonical URLs, and date
+  formatting), all derived from the configured site origin.
 - `public/` — favicon, author avatar, fonts, and the social share card.
 
 ## Social card

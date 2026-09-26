@@ -2,11 +2,10 @@
 import { defineConfig } from 'astro/config'
 import sitemap from '@astrojs/sitemap'
 
-// GitHub Pages project site: https://polyforest.github.io/blog/
-// To serve from a custom domain later, change `site` and `base` together.
+// GitHub Pages site, served from the custom domain https://blog.polyforest.com
+// at the domain root. The committed public/CNAME pins the domain on every deploy.
 export default defineConfig({
-  site: 'https://polyforest.github.io',
-  base: '/blog',
+  site: 'https://blog.polyforest.com',
   trailingSlash: 'ignore',
   integrations: [sitemap()],
   build: {
