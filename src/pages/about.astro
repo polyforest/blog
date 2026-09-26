@@ -5,34 +5,33 @@ const path = '/about/'
 ---
 
 <BaseLayout
-  title="About · PolyForest Blog"
-  description="Who writes the PolyForest blog and why."
-  path={path}
+        title="About · PolyForest Blog"
+        description="Who writes the PolyForest blog and why."
+        path={path}
 >
-  <article class="prose">
-    <h1>About</h1>
-    <p>
-      PolyForest builds interactive software: games, web media, and the libraries that
-      power them. This blog is where we write up how it works, through technical deep
-      dives, release notes that explain themselves, and notes from shipping open source.
-    </p>
-    <p>
-      The current focus is <a href="https://github.com/polyforest/vinyl">Vinyl</a>, our
-      open-source JavaScript audio playback library for music, podcast, and audiobook
-      experiences on the web.
-    </p>
-    <p>
-      Posts are written by <a href="https://github.com/nbilyk">Nicholas Bilyk</a> and
-      friends at PolyForest. Corrections and good arguments are welcome. Open an issue
-      or start a discussion on the repo.
-    </p>
-  </article>
+    <article class="prose">
+        <h1>About</h1>
+        <p>
+            PolyForest builds interactive software: games, web media, and the libraries that
+            power them. This blog is where we write up how it works, through technical deep
+            dives, release notes that explain themselves, and notes from shipping open source.
+        </p>
+        <p>
+            The current focus is <a href="https://amazonmusic.github.io/vinyl">Vinyl</a>, an Amazon Music open-source
+            JavaScript audio playback library for Dash and HLS video and audio streaming.
+        </p>
+        <p>
+            Posts are written by <a href="https://github.com/nbilyk">Nicholas Bilyk</a> and
+            friends at PolyForest. Corrections and good arguments are welcome. Open an issue
+            or start a discussion on the repo.
+        </p>
+    </article>
 </BaseLayout>
 
 <style>
-  .prose {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 3rem 0 2rem;
-  }
+    .prose {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 3rem 0 2rem;
+    }
 </style>
