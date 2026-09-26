@@ -4,6 +4,17 @@ import { withBase } from '../utils/urls'
 ---
 
 <BaseLayout title="Page not found · Poly Forest Blog" description="This page doesn't exist.">
+  {/* Legacy /blog/ links (pre-custom-domain) 301 to the custom domain with the
+      path intact, land on this 404 page (GitHub Pages serves 404.html for any
+      unknown path), and get rewritten here once, client-side. A no-op for
+      genuine 404s. */}
+  <script is:inline>
+    if (location.pathname.startsWith('/blog/')) {
+      location.replace(
+        location.pathname.replace(/^\/blog/, '') + location.search + location.hash
+      )
+    }
+  </script>
   <section class="notfound">
     <h1>Lost in the woods</h1>
     <p>There's no page at this URL. Either the link is old or it never worked.</p>
