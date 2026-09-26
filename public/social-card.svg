@@ -33,7 +33,7 @@
 
   <!-- wordmark -->
   <text x="600" y="300" text-anchor="middle"
-        font-family="Scope One, Georgia, serif" font-size="88" fill="#f5f2ea">Poly Forest</text>
+        font-family="Scope One, Georgia, serif" font-size="88" fill="#f5f2ea">PolyForest</text>
   <text x="600" y="368" text-anchor="middle"
         font-family="Scope One, Georgia, serif" font-size="34" fill="#f0d554"
         letter-spacing="6">BLOG</text>

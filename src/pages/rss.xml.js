@@ -7,9 +7,9 @@ export async function GET(context) {
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 
   return rss({
-    title: 'Poly Forest Blog',
+    title: 'PolyForest Blog',
     description:
-      'Engineering notes from Poly Forest — interactive software, games, and web media.',
+      'Engineering notes from PolyForest — interactive software, games, and web media.',
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,

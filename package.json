@@ -1,7 +1,7 @@
 {
   "name": "polyforest-blog",
   "version": "1.0.0",
-  "description": "The Poly Forest engineering blog",
+  "description": "The PolyForest engineering blog",
   "type": "module",
   "private": true,
   "scripts": {
