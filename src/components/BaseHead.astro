@@ -59,7 +59,9 @@ if (type === 'article') {
 <meta name="generator" content={Astro.generator} />
 <meta name="theme-color" content="#191919" />
 
-<link rel="icon" type="image/svg+xml" href={`${BASE}/favicon.svg`} />
+<link rel="icon" sizes="192x192" href={`${BASE}/polyForestIcon192.png`} />
+<link rel="apple-touch-icon" sizes="192x192" href={`${BASE}/polyForestIcon192.png`} />
+<link rel="apple-touch-icon-precomposed" sizes="192x192" href={`${BASE}/polyForestIcon192.png`} />
 <link rel="sitemap" href={`${BASE}/sitemap-index.xml`} />
 <link rel="alternate" type="application/rss+xml" title="Poly Forest Blog" href={absoluteUrl('/rss.xml', site ?? Astro.site)} />
 <link rel="canonical" href={canonical} />
