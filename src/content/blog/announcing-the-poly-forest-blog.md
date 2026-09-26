@@ -1,48 +1,28 @@
 ---
-title: "Hello, world: why Poly Forest is writing things down"
-description: "The Poly Forest engineering blog. What we're building and what we're learning, starting with Vinyl, our open-source web audio streaming engine."
+title: "Nicholas here, hello world!"
+description: "The Poly Forest engineering blog."
 pubDate: 2026-09-24
 updatedDate: 2026-09-24
 author: "Nicholas Bilyk"
-tags: ["meta", "vinyl", "open-source"]
+tags: [ "meta" ]
 draft: false
 ---
 
-Every project leaves the same trail behind: decisions buried in git history, arguments
-in issue threads, context scattered across release notes. It all makes sense if you were
-in the room. This blog is where we write things down for the people who weren't.
+Hi. My name is Nicholas. I'm a Sr. Software Engineer at Amazon.com. Formerly, I ran a small consulting company called
+[Poly Forest](https://polyforest.com), before that, a Sr. Software Engineer at [Riot Games](https://www.riotgames.com/).
 
-## What to expect
+But where I've worked and what I've done doesn't really say who I am. My personality tends to be a bit much. I'm loud,
+gregarious yet simultaneously shy and nervous around people. I love it when things work smoothly and when they don't,
+I'll be the first person to let you know. I pay attention to things like the weight of the buttons on a car steering
+wheel feel, or the noise it makes when you shut the door.
 
-Everything here is written by the people doing the work. Some posts are deep dives into
-how a piece of the system actually works: parsers, buffers, rendering loops. Others are
-release write-ups: what shipped, why, and what we'd do differently next time. The misses
-get the same treatment as the wins.
+# Why this blog?
 
-The rest is notes from maintaining open source. Test coverage as part of the workflow,
-CI that fails usefully, supporting real users at real scale. Less glamorous than the
-deep dives, but it's most of the actual job.
+Almost 20 years ago now I had a somewhat popular Flash blog. It was amazing to see people engage with my content, try my
+experiments, tell me about their experiences using my libraries, and something where I can go back and read what I was
+into at the time. With the death of Flash, I not only lost part of my identity as a developer, but also the community to
+which I was ingrained. While my choice of tech has long since matured (I was one of the early adopters of Kotlin and
+TypeScript), I never fully regained that community I had with Flash. JavaScript user groups felt too large and
+intimidating, and now with two young children my time to devote to hobbies or community events is limited.
 
-## Starting with Vinyl
 
-We're starting with [Vinyl](https://github.com/amazonmusic/vinyl), the open-source
-JavaScript streaming engine we announced in
-[June 2026](https://www.linkedin.com/posts/polyforest_today-im-announcing-that-amazon-vinyl-the-activity-7470112528870580226-8rwT).
-It's the engine behind playback on Amazon Music and Alexa.com, and it's built for the
-web: DASH and HLS with DRM, gapless track transitions, queues and prefetch as
-first-class concepts. All of it in about 75 KiB gzipped, with zero runtime dependencies.
-
-We have opinions about web media, mainly about where the engine ends and the player UI
-begins, and how much the platform should be doing for you instead. Writing them down is
-overdue.
-
-## The ground rules
-
-A few commitments, so you know what you're getting. If we quote a bundle size or a
-benchmark, the script that produced it is published next to it, with the date it was
-measured. We answer the naive questions first, especially the ones left in the comments
-on our own announcements. And when Vinyl isn't the right tool, we'll say so: simple
-sites don't need a streaming engine, and pretending otherwise buys nobody anything.
-
-Next up: the first real question under the launch announcement. Is Vinyl good for
-video, or only for audio? The next post answers it.
