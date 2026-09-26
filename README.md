@@ -1,4 +1,4 @@
-# Poly Forest Blog
+# [Poly Forest Blog](https://blog.polyforest.com/)
 
 The Poly Forest engineering blog — a static [Astro](https://astro.build) site
 published to GitHub Pages at <https://blog.polyforest.com/>.
