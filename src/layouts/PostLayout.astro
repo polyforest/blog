@@ -39,6 +39,12 @@ const { title, pubDate, updatedDate, author = AUTHOR, tags } = post.data
   <Comments url={url} />
 </article>
 
+<script>
+  // Defines <pf-video> for Markdown posts. Vinyl itself loads lazily, only
+  // when a player is on the page.
+  import '../components/video/pf-video'
+</script>
+
 <style>
   .post-header {
     padding: 3rem 0 0;

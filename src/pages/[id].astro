@@ -5,7 +5,9 @@ import PostLayout from '../layouts/PostLayout.astro'
 import { absoluteUrl } from '../utils/urls'
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft)
+  // Drafts get a page in `npm run dev` only, so they can be previewed at
+  // /<slug>/; builds (and the index, tags and feeds) never include them.
+  const posts = await getCollection('blog', ({ data }) => import.meta.env.DEV || !data.draft)
   return posts.map((post) => ({
     params: { id: post.id },
     props: { post },

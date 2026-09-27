@@ -24,10 +24,16 @@ Write the body in Markdown, run `npm run dev` to preview at
 | `updatedDate` | no | Set when a post is meaningfully revised. |
 | `author` | no | Defaults to Nicholas Bilyk. |
 | `tags` | no | Array of strings. |
-| `draft` | no | `true` hides a post from the site and feeds entirely. |
+| `draft` | no | `true` keeps a post out of builds and feeds; `npm run dev` still serves it at `/<slug>/` for preview. |
 
 A post that fails frontmatter validation fails `astro build`, so broken
 metadata can never deploy.
+
+### Videos
+
+Posts can embed adaptive-streaming videos with `<pf-video>`. See
+[`scripts/video/README.md`](scripts/video/README.md) for turning a screen
+recording into a stream and embedding it.
 
 ## Commands
 
