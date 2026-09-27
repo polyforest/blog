@@ -8,8 +8,9 @@ const { url } = Astro.props
 
 // giscus conversation config — ids read off giscus.app after the repo-admin
 // setup (Discussions enabled, giscus App installed, "Comments" category).
-// mapping "pathname" means page identity includes the /blog base, so renaming
-// a post slug orphans its thread.
+// mapping "pathname" keys each thread on the post's path (e.g.
+// "announcing-the-polyforest-blog/"), so renaming a post slug orphans its
+// thread.
 const GISCUS = {
   repo: 'polyforest/blog',
   repoId: 'R_kgDOUqPCgw',
