@@ -9,6 +9,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 ---
 
 <BaseLayout title={`${SITE_TITLE} · engineering notes`} description={SITE_DESCRIPTION}>
+  <canvas id="scene-background" aria-hidden="true"></canvas>
   <section class="hero">
     <h1>PolyForest <span class="accent">Blog</span></h1>
     <p>{SITE_DESCRIPTION}</p>
@@ -20,7 +21,64 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 </BaseLayout>
 
+<script>
+  // Lazy-mount the ambient Poly Forest scene as the home page background. The
+  // scene module (and three.js with it) lives in its own chunk that is only
+  // fetched after window load plus an idle slice, so page load is untouched.
+  // The background is decorative: if the chunk fails to load, the page is
+  // fully usable without it.
+  const mount = () => {
+    import('../scene/ambientScene')
+      .then(({ initAmbientScene }) => {
+        const canvas = document.getElementById('scene-background')
+        if (canvas instanceof HTMLCanvasElement) initAmbientScene(canvas)
+      })
+      .catch((error) => console.error('Ambient scene failed to load:', error))
+  }
+  const scheduleMount = () => {
+    // Runtime feature test (not `in`, which narrows against lib.dom's
+    // always-present declaration): older Safari lacks requestIdleCallback.
+    if (typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(mount, { timeout: 2000 })
+    } else {
+      window.setTimeout(mount, 200)
+    }
+  }
+  if (document.readyState === 'complete') scheduleMount()
+  else window.addEventListener('load', scheduleMount, { once: true })
+</script>
+
 <style>
+  /* The fixed background canvas: decorative only (aria-hidden), out of flow,
+     behind all content, inert to input, and held at the spec's ~40% opacity.
+     Canvas is a replaced element — `inset: 0` alone would leave it at its
+     attribute-intrinsic size (and feed the renderer's own resize loop), so it
+     needs explicit dimensions. */
+  #scene-background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  /* The scene canvas paints at z-index -1, so the body's own background must
+     be translucent on this page: global.css gives body an opaque two-layer
+     background that would otherwise hide the canvas entirely. Keep the faint
+     gold glow, drop the opaque color layer — html's #191919 remains the
+     backdrop, and it equals the scene's own clear color (0x191919). */
+  :global(html body) {
+    background: radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      rgba(240, 213, 84, 0.055),
+      transparent
+    );
+  }
+  /* Deterministic stacking: content paints above the fixed canvas. */
+  :global(main) {
+    position: relative;
+  }
   .hero {
     padding: 3.5rem 0 2.5rem;
     max-width: var(--max-width);

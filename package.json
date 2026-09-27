@@ -16,10 +16,13 @@
     "@astrojs/sitemap": "^3.6.0",
     "@fontsource/scope-one": "^5.2.5",
     "@resvg/resvg-js": "^2.6.2",
-    "astro": "^5.13.2"
+    "astro": "^5.13.2",
+    "three": "^0.186.1",
+    "three-particles": "^0.19.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "@types/three": "^0.186.0",
     "typescript": "^5.9.2"
   },
   "engines": {
