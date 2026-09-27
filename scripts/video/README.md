@@ -78,6 +78,19 @@ minute).
 - **Size:** about 12–13 MB per minute of screen recording for all rungs
   together (the first video: 17 MB for 81 s).
 
+## Published videos
+
+### `particles-ai-preview`
+
+Source: `particles_ai.mov` screen recording. Music: "Sleek Modern Groove"
+(supplied by the author; not in the repo). Rebuilt with:
+
+```sh
+scripts/video/edit-demo.sh particles_ai.mov edited.mp4 \
+  --music "Sleek Modern Groove.m4a" --music-gain 0.7
+scripts/video/package-dash.sh edited.mp4 particles-ai-preview --poster-at 50
+```
+
 ## The player
 
 `<pf-video>` has play/pause, a scrub bar showing the fetched range, time,
