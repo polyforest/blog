@@ -50,10 +50,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <style>
   /* The fixed background canvas: decorative only (aria-hidden), out of flow,
-     behind all content, inert to input, and held at the spec's ~40% opacity.
-     Canvas is a replaced element — `inset: 0` alone would leave it at its
-     attribute-intrinsic size (and feed the renderer's own resize loop), so it
-     needs explicit dimensions. */
+     behind all content, inert to input. Canvas is a replaced element —
+     `inset: 0` alone would leave it at its attribute-intrinsic size (and feed
+     the renderer's own resize loop), so it needs explicit dimensions.
+     Hidden until the scene's first paint: ambientScene adds .scene-ready
+     right after its first renderer.render, and the transition below eases
+     the canvas to the steady ~40% opacity. Until that class lands, the
+     transparent canvas over html's #191919 backdrop is visually identical
+     to the scene's own 0x191919 clear color — so "not yet" looks like
+     "nothing there", and a failed chunk load simply stays that way. */
   #scene-background {
     position: fixed;
     inset: 0;
@@ -61,7 +66,19 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     height: 100%;
     z-index: -1;
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 1s ease-out;
+  }
+  #scene-background.scene-ready {
     opacity: 0.4;
+  }
+  /* The fade is itself motion: under prefers-reduced-motion the scene renders
+     one warmed still frame, and the class flip must settle the opacity with
+     no transition so that frame appears immediately. */
+  @media (prefers-reduced-motion: reduce) {
+    #scene-background {
+      transition: none;
+    }
   }
   /* The scene canvas paints at z-index -1, so the body's own background must
      be translucent on this page: global.css gives body an opaque two-layer

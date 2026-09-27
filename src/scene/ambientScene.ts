@@ -199,6 +199,17 @@ export function initAmbientScene(canvas: HTMLCanvasElement): () => void {
         camera.updateProjectionMatrix()
     }
 
+    // One-shot reveal: the page's CSS fades the canvas in once it carries the
+    // .scene-ready class, so the reveal must fire exactly here — right after
+    // the first real render — on both render paths (the animated loop and the
+    // reduced-motion still frame), or reduced-motion users would see nothing.
+    let revealed = false
+    function reveal(): void {
+        if (revealed) return
+        revealed = true
+        canvas.classList.add('scene-ready')
+    }
+
     function frame(now: number): void {
         rafId = requestAnimationFrame(frame)
 
@@ -217,6 +228,7 @@ export function initAmbientScene(canvas: HTMLCanvasElement): () => void {
         if (resizeRendererToDisplaySize()) updateCameraAspect()
         fire.update(simDt, camera)
         renderer.render(scene, camera)
+        reveal()
     }
 
     function start(): void {
@@ -238,6 +250,7 @@ export function initAmbientScene(canvas: HTMLCanvasElement): () => void {
         // billboard yaw (same treatment as upstream's reduced-motion path).
         fire.update(0, camera)
         renderer.render(scene, camera)
+        reveal()
     }
 
     const onVisibilityChange = (): void => {
