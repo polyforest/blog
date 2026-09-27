@@ -1,6 +1,5 @@
-// Reusable lightweight noise utilities and time-driven signal helper.
-// Provides 1D Perlin-like gradient noise, FBM, contrast mapping, and a stateful
-// NoiseSignal that you can advance with update(dt) to get evolving values.
+// Reusable lightweight noise utilities: 1D Perlin-like gradient noise, FBM,
+// and contrast mapping.
 //
 // Ported from polyforest/polyforest-web
 // (https://github.com/polyforest/polyforest-web), branch main, commit
@@ -73,76 +72,4 @@ export function to01WithContrast(xSigned: number, contrast: number): number {
     const c = Math.max(0.0001, contrast)
     const y = Math.tanh(xSigned * c) / Math.tanh(c)
     return y * 0.5 + 0.5
-}
-
-export interface NoiseSignalOptions {
-    /** Number of noise features per second */
-    freq?: number
-    /** Number of FBM octaves to sum together */
-    octaves?: number
-    /** Frequency multiplier between octaves */
-    lacunarity?: number
-    /** Amplitude multiplier between octaves */
-    gain?: number
-    /** Initial offset added to the noise input */
-    phase?: number
-}
-
-export interface NoiseSignal {
-    t: number
-    update: (dt: number) => number // advances time and returns current signed value
-    setTime: (t: number) => number // sets time and returns current signed value
-    getSigned: () => number // [-1,1]
-    get: (
-        /** Overall amplitude scaling factor (default 1) */
-        amp?: number,
-    ) => number // [0,amp] + ampOffset
-}
-
-/**
- * Create a time-driven 1D FBM noise signal. Supports combining a slow and fast band
- * using provided amplitude weights. Call update(dt) each frame.
- */
-export function createNoiseSignal(
-    options: NoiseSignalOptions = {},
-): NoiseSignal {
-    // Slow band
-    const freq = options.freq ?? 1
-    const octaves = options.octaves ?? 3
-    const lacunarity = options.lacunarity ?? 2
-    const gain = options.gain ?? 0.5
-    const phase = options.phase ?? 0
-
-    let t = 0
-    let lastSigned = 0
-
-    function evalAt(time: number) {
-        const x = phase + time * freq
-        lastSigned = fbm1D(x, octaves, lacunarity, gain) // [-1,1]
-    }
-
-    function update(dt: number): number {
-        t += dt
-        evalAt(t)
-        return lastSigned
-    }
-
-    function setTime(newT: number): number {
-        t = newT
-        evalAt(t)
-        return lastSigned
-    }
-
-    function getSigned() {
-        return lastSigned
-    }
-
-    function get(amp = 1) {
-        return to01WithContrast(lastSigned, amp)
-    }
-
-    // Initialize at t=0
-    evalAt(t)
-
-    return { t, update, setTime, getSigned, get }
 }
