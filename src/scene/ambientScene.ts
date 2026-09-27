@@ -17,7 +17,7 @@
  *   one warmed-up frame renders and the scene holds.
  * - Frugal: the rAF loop pauses on visibilitychange, and the pixel ratio is
  *   capped at MAX_DPR.
- * - Clean: dispose() (wired to pagehide) frees geometries, materials,
+ * - Clean: dispose() (wired to unloading pagehide) frees geometries, materials,
  *   textures, and the WebGL context.
  */
 import {
@@ -62,7 +62,8 @@ const MAX_DPR = 1.5
 /**
  * Initialize the scene on the given canvas and start its (visibility-gated)
  * render loop. Returns an idempotent dispose function; dispose is also wired
- * to `pagehide` internally, so callers rarely need the return value.
+ * to a non-persisted `pagehide` internally (a bfcache entry only pauses), so
+ * callers rarely need the return value.
  */
 export function initAmbientScene(canvas: HTMLCanvasElement): () => void {
     const renderer = new WebGLRenderer({ canvas, antialias: true })
@@ -257,7 +258,18 @@ export function initAmbientScene(canvas: HTMLCanvasElement): () => void {
         if (document.hidden) stop()
         else start()
     }
-    const onPagehide = (): void => dispose()
+    // A persisted pagehide means the page is entering the back/forward cache
+    // and may be restored intact, so only pause; tearing down the WebGL
+    // context here would leave a blank canvas when the user navigates back.
+    const onPagehide = (event: PageTransitionEvent): void => {
+        if (event.persisted) stop()
+        else dispose()
+    }
+    const onPageshow = (event: PageTransitionEvent): void => {
+        if (!event.persisted) return
+        if (prefersReducedMotion) renderStill()
+        else if (!document.hidden) start()
+    }
 
     if (prefersReducedMotion) {
         const renderStillWhenReady = (): void => {
@@ -277,6 +289,7 @@ export function initAmbientScene(canvas: HTMLCanvasElement): () => void {
     }
 
     window.addEventListener('pagehide', onPagehide)
+    window.addEventListener('pageshow', onPageshow)
 
     // --- Teardown -----------------------------------------------------------
     function disposeMaterial(material: Material): void {
@@ -296,6 +309,7 @@ export function initAmbientScene(canvas: HTMLCanvasElement): () => void {
         document.removeEventListener('visibilitychange', onVisibilityChange)
         window.removeEventListener('resize', renderStill)
         window.removeEventListener('pagehide', onPagehide)
+        window.removeEventListener('pageshow', onPageshow)
 
         scene.traverse((obj) => {
             if (!(obj instanceof Mesh)) return
