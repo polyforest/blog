@@ -1,6 +1,6 @@
 ---
 title: "Nicholas here, hello world!"
-description: "Nicholas Bilyk is blogging again after two decades — why this PolyForest blog exists, why every post is human-written, and the thoughts-are-my-own disclaimer."
+description: "Nicholas Bilyk is blogging again after two decades: why this PolyForest blog exists, why every post is human-written, and the thoughts-are-my-own disclaimer."
 pubDate: 2026-09-24
 updatedDate: 2026-09-24
 author: "Nicholas Bilyk"

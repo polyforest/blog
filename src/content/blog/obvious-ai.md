@@ -1,6 +1,6 @@
 ---
 title: "Obvious SF Event"
-description: "My first hackathon in a decade: Obvious AI's San Francisco event, an honest review of their agentic platform, and what it built in a day — including this blog."
+description: "My first hackathon in a decade: Obvious AI's San Francisco event, an honest review of their agentic platform, and what it built in a day, including this blog."
 pubDate: 2026-09-26
 updatedDate: 2026-09-26
 author: "Nicholas Bilyk"
