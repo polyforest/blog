@@ -25,7 +25,7 @@ const { tag, posts } = Astro.props
 <BaseLayout
   title={`Posts tagged “${tag}” — ${SITE_TITLE}`}
   description={`All PolyForest blog posts tagged ${tag}.`}
-  path={`/tag/${tag}/`}
+  path={`/tag/${slugify(tag)}/`}
 >
   <section class="tag-header">
     <h1>Posts tagged <span class="accent">{tag}</span></h1>
