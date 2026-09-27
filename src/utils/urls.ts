@@ -1,7 +1,9 @@
 /**
- * Shared URL helpers. The site is published as a GitHub Pages project
- * site (https://polyforest.github.io/blog/), so every internal link
- * must be prefixed with the configured base path.
+ * Shared URL helpers. The site is served from the custom domain
+ * https://blog.polyforest.com at the root (see astro.config), so BASE
+ * resolves to '' and withBase is a passthrough today. It stays because the
+ * base remains configurable, and legacy /blog/ links are handled by the
+ * client-side rewrite on the 404 page.
  */
 
 /** The site origin, from astro.config. */

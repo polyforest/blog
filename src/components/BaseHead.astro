@@ -12,6 +12,8 @@ interface Props {
   author?: string
   tags?: string[]
   type?: 'website' | 'article'
+  /** When true, emit noindex and drop canonical/og:url/JSON-LD — for error pages. */
+  noindex?: boolean
 }
 
 const {
@@ -24,6 +26,7 @@ const {
   author = 'PolyForest',
   tags = [],
   type = 'website',
+  noindex = false,
 } = Astro.props
 
 const canonical = absoluteUrl(path, site ?? Astro.site)
@@ -45,11 +48,14 @@ const jsonLd: Record<string, unknown> = {
 }
 if (type === 'article') {
   jsonLd.author = { '@type': 'Person', name: author }
+  jsonLd.mainEntityOfPage = canonical
   if (publishedTime) {
     jsonLd.datePublished = publishedTime.toISOString()
     jsonLd.dateModified = (modifiedTime ?? publishedTime).toISOString()
   }
   if (tags.length) jsonLd.keywords = tags.join(', ')
+} else {
+  jsonLd.name = 'PolyForest Blog'
 }
 ---
 
@@ -64,18 +70,18 @@ if (type === 'article') {
 <link rel="apple-touch-icon-precomposed" sizes="192x192" href={`${BASE}/polyForestIcon192.png`} />
 <link rel="sitemap" href={`${BASE}/sitemap-index.xml`} />
 <link rel="alternate" type="application/rss+xml" title="PolyForest Blog" href={absoluteUrl('/rss.xml', site ?? Astro.site)} />
-<link rel="canonical" href={canonical} />
+{!noindex && <link rel="canonical" href={canonical} />}
 
 <!-- Primary meta -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content={author} />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
 
 <!-- Open Graph -->
 <meta property="og:type" content={type} />
-<meta property="og:url" content={canonical} />
+{!noindex && <meta property="og:url" content={canonical} />}
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={socialImage} />
@@ -88,13 +94,14 @@ if (type === 'article') {
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:url" content={canonical} />
+{!noindex && <meta name="twitter:url" content={canonical} />}
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={socialImage} />
+<meta name="twitter:image:alt" content={socialImageAlt} />
 
 <!-- Structured data -->
-<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+{!noindex && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
 <!-- Analytics -->
 <script is:inline data-goatcounter="https://polyforest.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
