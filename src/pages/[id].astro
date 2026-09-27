@@ -25,6 +25,7 @@ const url = absoluteUrl(`/${post.id}/`, Astro.site)
   type="article"
   publishedTime={post.data.pubDate}
   modifiedTime={post.data.updatedDate}
+  author={post.data.author}
   tags={post.data.tags}
 >
   <PostLayout post={post} url={url}>

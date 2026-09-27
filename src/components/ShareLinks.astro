@@ -36,7 +36,7 @@ const links = [
       <li><a href={href} rel="noopener noreferrer" target="_blank">{label}</a></li>
     ))}
     <li>
-      <button type="button" class="copy" data-url={url}>Copy link</button>
+      <button type="button" class="copy" data-url={url} aria-live="polite">Copy link</button>
     </li>
   </ul>
 </aside>

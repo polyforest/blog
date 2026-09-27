@@ -16,9 +16,11 @@ interface Props {
   modifiedTime?: Date
   author?: string
   tags?: string[]
+  /** Suppress indexing signals — for the 404 page. */
+  noindex?: boolean
 }
 
-const { title, description, path = '/', site, type, publishedTime, modifiedTime, author, tags } = Astro.props
+const { title, description, path = '/', site, type, publishedTime, modifiedTime, author, tags, noindex } = Astro.props
 ---
 
 <!doctype html>
@@ -34,11 +36,13 @@ const { title, description, path = '/', site, type, publishedTime, modifiedTime,
       modifiedTime={modifiedTime}
       author={author}
       tags={tags}
+      noindex={noindex}
     />
   </head>
   <body>
-    <Header />
-    <main>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header current={path} />
+    <main id="main">
       <slot />
     </main>
     <Footer />
@@ -50,5 +54,34 @@ const { title, description, path = '/', site, type, publishedTime, modifiedTime,
     max-width: var(--wide-max-width);
     margin: 0 auto;
     padding: 0 1.25rem;
+  }
+  /* Visually hidden until focused: the standard first-tab skip affordance. */
+  .skip-link {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skip-link:focus-visible {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 100;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0.6rem 1rem;
+    overflow: visible;
+    clip-path: none;
+    background: var(--bg-raised);
+    color: var(--accent);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    font-size: 0.95rem;
   }
 </style>

@@ -1,6 +1,6 @@
 ---
 title: "Obvious SF Event"
-description: "Obvious AI San Francisco hackathon"
+description: "My first hackathon in a decade: Obvious AI's San Francisco event, an honest review of their agentic platform, and what it built in a day, including this blog."
 pubDate: 2026-09-26
 updatedDate: 2026-09-26
 author: "Nicholas Bilyk"
@@ -8,7 +8,7 @@ tags: [ "meta", "events", "ai" ]
 draft: false
 ---
 
-# Hackathon!
+## Hackathon!
 
 This was my first hackathon in more than 10 years. I generally avoid them because I think that it's easy to start
 something that never gets finished, but it's hard to keep with an idea and make it all the way to production.
@@ -42,7 +42,7 @@ The event was a strange challenge, using the Obvious AI platform, who can spend 
 bunch of free tokens to use on the platform. I'm generally against tokenmaxxing, and abhor metrics like "tokens spent,"
 or "PRs pushed." However, this felt like a good opportunity to push the limits.
 
-# Obvious AI Platform
+## Obvious AI Platform
 
 My typical day-to-day agentic flow is an agent steering file that describes the workflow of coding. A supervisor agent
 breaking down input tasks into lower level ones, defining dependencies, orchestrating subagents, performing adversarial
@@ -73,7 +73,7 @@ GitHub, and in general I felt like it made few mistakes.
 Because of the slow speed and UI clumsiness, it ended up a lot less hands-off than my typical workflow. I felt like a
 middle manager prodding for status updates because the progress was never clear enough.
 
-# Proof is in the pudding
+## Proof is in the pudding
 
 Overall, I'm glad I went to the event and I got a lot out of it. I'm excited to see where they are going and how they
 can improve the platform. While I wasn't impressed with the speed and usability, what it ultimately produced is
