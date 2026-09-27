@@ -45,10 +45,12 @@ import { createForest } from './forest'
 import { createTerrainMesh, createWaterMesh } from './terrain'
 import { WARMUP_SECONDS, WARMUP_STEP } from './WARMUP_STEP'
 
-// The hero-wide framing on polyforest.com (mainScene's ?cam=far position with
-// the settled orbit target). QA-tunable within a small band; no animation.
-const CAMERA_POSITION = { x: 0, y: 8.5, z: 12 }
-const CAMERA_TARGET = { x: 0, y: 0.5, z: 0 }
+// The hero-wide framing on polyforest.com (QA-tuned from the spec's starting
+// point (0, 8.5, 12): at that distance the fire is a distant dot — the hero
+// look reads from the close band just past the intro's eased endpoint).
+// No animation.
+const CAMERA_POSITION = { x: 0, y: 2.1, z: 5.6 }
+const CAMERA_TARGET = { x: 0, y: 0.9, z: 0 }
 const FOV = 75
 const NEAR = 0.1
 const FAR = 400

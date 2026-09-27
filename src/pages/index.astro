@@ -50,10 +50,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <style>
   /* The fixed background canvas: decorative only (aria-hidden), out of flow,
-     behind all content, inert to input, and held at the spec's ~40% opacity. */
+     behind all content, inert to input, and held at the spec's ~40% opacity.
+     Canvas is a replaced element — `inset: 0` alone would leave it at its
+     attribute-intrinsic size (and feed the renderer's own resize loop), so it
+     needs explicit dimensions. */
   #scene-background {
     position: fixed;
     inset: 0;
+    width: 100%;
+    height: 100%;
     z-index: -1;
     pointer-events: none;
     opacity: 0.4;
